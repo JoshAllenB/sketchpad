@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,15 +15,14 @@ body {
 .grid-cell {
   width: 20px;
   height: 20px;
-  background-color: #ccc;
-  transition: background-color 0.1s ease-in-out;
-  border: 1px solid #ccc;
+  flex: 1; 
+  background-color: #555555;
+  transition: background-color 0.4s ease-in-out;
+  border: 1px solid #000000;
 }
 
 .grid-cell:hover {
-  background-color: #f00;
-  background-image: linear-gradient(to bottom, #f00, #00f);
-  background-size: 100% 2px;
-  background-repeat: repeat-x;
-  background-position: bottom;
+  background-color: rgb(255, 255, 255);
+  background-image: repeating-linear-gradient(to bottom, rgb(46, 46, 46), rgb(3, 3, 3));
+  transition: background-image 10s ease-in-out;
 }
