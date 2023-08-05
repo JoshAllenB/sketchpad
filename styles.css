@@ -1,28 +1,213 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #000000;
+.flex-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: aliceblue;
+}
+
+.board{
+  width: 80%;
+  height: 80%;
+  display: grid;
+  background-color: white;
+  box-shadow: inset 0 -3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.board:hover{
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+  min-height: 300px;
+  width: 60vw;
+  height: 60vw;
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.title{
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
-.grid-row {
-  display: flex;
-  background-color: #fff;
+.buttons{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.grid-cell {
-  width: 20px;
-  height: 20px;
-  flex: 1; 
-  background-color: #555555;
-  transition: background-color 0.4s ease-in-out;
-  border: 1px solid #000000;
+button{
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s;
 }
 
-.grid-cell:hover {
-  background-color: rgb(255, 255, 255);
-  background-image: repeating-linear-gradient(to bottom, rgb(46, 46, 46), rgb(3, 3, 3));
-  transition: background-image 10s ease-in-out;
+button:hover{
+  cursor: pointer;
+}
+
+.blackButton{
+  background-color: white;
+  color: black;
+}
+
+.blackButton:hover{
+  background-color: black;
+  color: white;
+}
+
+.grayButton {
+  background-color: white;
+}
+
+.grayButton:hover{
+  background-color: gray;
+  color: white;
+}
+
+.eraserButton{
+  background-color: white;
+}
+
+.eraserButton:hover{
+  background-color: red;
+  color: white;
+}
+
+.randomButton{
+  background-color: white;
+}
+
+.randomButton:hover{
+  background-image:     linear-gradient(
+     to right, 
+     #E7484F,
+     #E7484F 16.65%,
+     #F68B1D 16.65%,
+     #F68B1D 33.3%,
+     #FCED00 33.3%,
+     #FCED00 49.95%,
+     #009E4F 49.95%,
+     #009E4F 66.6%,
+     #00AAC3 66.6%,
+     #00AAC3 83.25%,
+     #732982 83.25%,
+     #732982 100%,
+     #E7484F 100%
+    
+    
+    
+   );
+ animation:slidebg 2s linear infinite;
+}
+
+@keyframes slidebg {
+  to {
+    background-position:20vw;
+  }
+}
+
+.follow{
+  margin-top: 40px;
+}
+
+.follow a{
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.resetButton {
+  background-color: transparent;
+  border: 3px solid #ff0251;
+  color: #ff0251;
+  transition: .3s;
+}
+.resetButton:hover {
+  animation: pulse 1s infinite;
+  transition: .3s;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(.9);
+  }
+    100% {
+    transform: scale(1);
+  }
+}
+
+.setButton{
+  position:relative;
+  display:inline-block;
+  margin:20px;
+}
+
+.setButton a{
+  color:white;
+  font-family:Helvetica, sans-serif;
+  font-weight:bold;
+  font-size:36px;
+  text-align: center;
+  text-decoration:none;
+  background-color:#FFA12B;
+  display:block;
+  position:relative;
+  padding:20px 40px;
+  
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-shadow: 0px 1px 0px #000;
+  filter: dropshadow(color=#000, offx=0px, offy=1px);
+  
+  -webkit-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+  -moz-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+  box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
+  
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.setButton a:active{
+  top:10px;
+  background-color:#F78900;
+  
+  -webkit-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+  -moz-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3pxpx 0 #915100;
+  box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
+}
+
+.setButton:after{
+  content:"";
+  height:100%;
+  width:100%;
+  padding:4px;
+  position: absolute;
+  bottom:-15px;
+  left:-4px;
+  z-index:-1;
+  background-color:#2B1800;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.mode{
+  margin-bottom: 20px;
+}
+
+.error{
+  color: red;
+  font-size: larger;
 }

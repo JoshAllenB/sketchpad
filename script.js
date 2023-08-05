@@ -1,37 +1,60 @@
-const container = document.getElementById("grid-container");
-const gridCells = container.querySelectorAll(".grid-cell");
-let currentCell;
+let color = "black";
+let click = "true"
 
-function createGrid(rows, columns) {
-  for (let i = 0; i < rows; i++) {
-    const row = document.createElement("div");
-    row.classList.add("grid-row");
+function populateBoard(size){
+  let board = document.querySelector(".board");
+  let square = board.querySelectorAll('div')
+  square.forEach((div) => div.remove());
+  board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+  board.style.display = "grid";
 
-    for (let j = 0; j < columns; j++) {
-      const cell = document.createElement("div");
-      cell.classList.add("grid-cell");
-      row.appendChild(cell);
-    }
-    container.appendChild(row);
+  let amount = size * size
+  for (let i = 0; i < amount; i++){
+    let square = document.createElement("div");
+    square.addEventListener("mouseover", colorSquare);
+    square.style.backgroundColor = "white";
+    board.appendChild(square);
+  }
+}
+populateBoard(16);
+
+function changeSize(input){
+  if (input >= 2 && input <= 100){
+    document.querySelector('.error').style.display = 'none';
+    populateBoard(input);
+  } else {
+    document.querySelector('.error').style.display = 'flex';
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  createGrid(16, 16);
+function colorSquare(){
+ if (click){
+  if (color === 'random'){
+    this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  } else {
+    this.style.backgroundColor = color;
+  }
+ }
+}
 
-  for (const gridCell of gridCells) {
-    gridCell.addEventListener("mouseover", onGridCellMouseOver);
-    gridCell.addEventListener("mouseout", onGridCellMouseOut);
+function changeColor(choice){
+  color = choice;
+}
+
+function resetBoard(){
+  let board = document.querySelector(".board");
+  let square = board.querySelectorAll('div')
+  square.forEach((div) => div.style.backgroundColor = 'white')
+}
+
+document.querySelector('body').addEventListener('click', (e) => {
+  if (e.target.tagName != 'BUTTON'){
+    click = !click;
+    if (click){
+      document.querySelector(".mode").textContent = "Mode: Coloring";
+    } else {
+      document.querySelector(".mode").textContent = "Mode: Not Coloring";
+    }
   }
 });
-
-function onGridCellMouseOver(event) {
-  currentCell = event.target;
-  currentCell.style.backgroundImage = "repeating-linear-gradient(to bottom, #f00, #00f)";
-}
-
-function onGridCellMouseOut(event) {
-  if (currentCell === event.target) {
-    currentCell.style.backgroundImage = "";
-  }
-}
